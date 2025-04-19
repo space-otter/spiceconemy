@@ -23,7 +23,7 @@ This interactive visualization platform enables users to investigate how differe
 
 ## Dataset Overview
 
-The project uses a structured dataset comprising over 45,000 records from multiple years and countries. Each record contains:
+The project uses a structured dataset from [kaggle](https://www.kaggle.com/datasets/harishthakur995/global-spice-consumption) comprising over 45,000 records from multiple years and countries. Each record contains:
 
 - 🌐 Country (Area)
 - 📆 Year
@@ -44,3 +44,10 @@ The project uses a structured dataset comprising over 45,000 records from multip
 2. create a virtual environment by running `python -m venv .venv` (Linux) or `python -m venv venv` (Windows)
 3. activate your virtual environment by running `source .venv/bin/activate` (Linux) or `venv\Scripts\activate` (Windows)
 4. install the required packages by running `pip install -r requirements.txt`
+
+## Tools
+
+- [Python3](https://www.python.org/)
+- [Black](https://black.readthedocs.io/en/stable/index.html) (for code formatting)
+- [Plotly](https://plotly.com/graphing-libraries/) (for data visualization)
+- [Pytest](https://docs.pytest.org/en/stable/getting-started.html#get-started) (for testing)
