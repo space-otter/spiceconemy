@@ -6,3 +6,11 @@ skip-string-normalization = false
 [tool.isort]
 profile = "black"
 line_length = 88
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+    "integration",
+]
