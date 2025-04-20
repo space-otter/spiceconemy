@@ -1,3 +1,5 @@
+<img src=".github/assets/logo.png" width="203" height="183" style="text-align:center">
+
 # Spiceconemy
 
 Spiceconemy is a data visualization project that explores the international dynamics of spice production, trade, and consumption using real-world data. Powered by a detailed dataset containing annual trade records for various spices across countries and years, the project brings the hidden networks of the global spice economy to life.
