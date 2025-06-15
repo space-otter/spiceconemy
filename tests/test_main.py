@@ -1,67 +1,45 @@
-from src.main import map_records
+from src.main import csv_to_records
+import tempfile
+import os
 
-def test_map_to_record_list():
-    input = [
-        [
-            "TCL",
-            "Crops and livestock products",
-            276,
-            "Germany",
-            5610,
-            1654,
-            "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
-            2022,
-            "t",
-            19092.44,
-            5313.95,
-            0,
-            13778.49,
-        ],
-        [
-            "TCL",
-            "Crops and livestock products",
-            276,
-            "Germany",
-            5610,
-            1654,
-            "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
-            2023,
-            "t",
-            15158.73,
-            5221.55,
-            0,
-            9937.18,
-        ],
-    ]
+
+def create_test_csv():
+    input = """Domain Code,Domain,Area Code (M49),Area,Element Code,Item Code (CPC),Item,Year,Unit,Import,Export ,Production,Consumption
+TCL,Crops and livestock products,4,Afghanistan,5610,1654,"Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",2014,t,283.85,21099,21500,684.85"""
+
+    # Create a temporary directory
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        print(f"Created temporary directory at {tmpdirname}")
+
+        # Create a file inside it
+        filepath = os.path.join(tmpdirname, "testfile.txt")
+        with open(filepath, "w") as f:
+            f.write("Hello inside a temp directory!")
+
+        # Read the file back
+        with open(filepath, "r") as f:
+            print(f.read())
+        with open("_sample.test.csv", "w") as file:
+            file.write(input)
+
+
+def test_csv_to_record():
+    create_test_csv()
 
     expected = [
-        {
-            "domain_code": "TCL",
-            "domain": "Crops and livestock products",
-            "area_code": 276,
-            "area": "Germany",
-            "item_code": 5610,
-            "item": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
-            "year": 2022,
-            "unit": "t",
-            "import_quantity": 19092.44,
-            "export_quantity": 5313.95,
-            "production": 0,
-            "consumption": 13778.49,
-        },
-        {
-            "domain_code": "TCL",
-            "domain": "Crops and livestock products",
-            "area_code": 276,
-            "area": "Germany",
-            "item_code": 5610,
-            "item": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
-            "year": 2023,
-            "unit": "t",
-            "import_quantity": 15158.73,
-            "export_quantity": 5221.55,
-            "production": 0,
-            "consumption": 9937.18,
-        },
+        (
+            "TCL",
+            "Crops and livestock products",
+            "5610",
+            "1654",
+            "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
+            "2014",
+            "t",
+            "283.85",
+            "21099",
+            "21500",
+            "684.85",
+        )
     ]
-    assert map_records(input) == expected
+
+    assert csv_to_records(input) == expected
